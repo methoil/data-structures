@@ -6,9 +6,10 @@ class HashTable {
   set(key, val) {
     const index = this._hash(key);
     if (!this.data[index]) {
-      this.data[index] = [{ val, key }];
+      this.data[index] = [[key, val]];
     } else {
-      this.data[index].push({ val, key });
+      const entry = this._findKeyAtIndex(index, key);
+      entry ? (entry.val = val) : this.data[index].push([key, val]);
     }
   }
 
@@ -18,8 +19,12 @@ class HashTable {
       return undefined;
     }
 
-    const entry = this.data[index].find(entry => entry.key == key);
-    return entry.val;
+    const entry = this._findKeyAtIndex(index, key);
+    return entry[1];
+  }
+
+  _findKeyAtIndex(index, key) {
+    return this.data[index].find(entry => entry[0] == key);
   }
 
   _hash(key) {
@@ -38,5 +43,6 @@ myHashTable.set("yourLevel", 10);
 console.log(`Your puny level is at ${myHashTable.get("yourLevel")}`);
 myHashTable.set("grapes", 666);
 myHashTable.set("apples", 9);
+myHashTable.set("apples", 99);
 console.log(`grapes are ${myHashTable.get("grapes")}`);
 console.log(`apples are ${myHashTable.get("apples")}`);
