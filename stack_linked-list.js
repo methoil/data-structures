@@ -22,7 +22,7 @@ class Stack {
             this.top = newNode;
             this.bottom = this.top;
         } else {
-            this.top.next = newNode;
+            newNode.next = this.top;
             this.top = newNode;
         }
 
@@ -41,13 +41,7 @@ class Stack {
                 this.top = null;
                 this.bottom = null;
             } else {
-                let prevLastNode = this.bottom;
-                for (let i = 1; i < this.length - 1; i++) {
-                    prevLastNode = prevLastNode.next;
-                }
-                prevLastNode.next = null;
-                delete this.top;
-                this.top = prevLastNode;
+                this.top = this.top.next;
             }
 
             this.length--;
