@@ -1,9 +1,4 @@
-class Node {
-    constructor(val) {
-        this.val = val;
-        this.next = null;
-    }
-}
+const linkedList = require("./linkedList");
 
 class Stack {
     constructor() {
@@ -13,11 +8,11 @@ class Stack {
     }
 
     peek() {
-        return this.top && this.top.val || null;
+        return this.top && this.top.data || null;
     }
 
     push(val) {
-        const newNode = new Node(val);
+        const newNode = new linkedList.Node(val);
         if (this.top == null) {
             this.top = newNode;
             this.bottom = this.top;
@@ -35,7 +30,7 @@ class Stack {
         if (this.length === 0) {
             return returnVal;
         } else {
-            returnVal = this.top.val;
+            returnVal = this.top.data;
 
             if (this.length === 1) {
                 this.top = null;

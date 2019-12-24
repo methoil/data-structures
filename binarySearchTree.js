@@ -39,45 +39,45 @@ class binarySearchTree {
 
   inOrderTraversal(node = this.head) {
     if (!node) {
-        return;
+      return;
     }
 
     if (node.lChild !== null) {
-        this.preOrderTraversal(node.lChild);
+      this.preOrderTraversal(node.lChild);
     }
     console.log(node.data);
 
-    if (node.rChild) { 
-        this.preOrderTraversal(node.rChild);
+    if (node.rChild) {
+      this.preOrderTraversal(node.rChild);
     }
   }
 
   preOrderTraversal(node = this.head) {
     if (!node) {
-        return;
+      return;
     }
     console.log(node.data);
 
     if (node.lChild !== null) {
-        this.preOrderTraversal(node.lChild);
+      this.preOrderTraversal(node.lChild);
     }
-    
-    if (node.rChild) { 
-        this.preOrderTraversal(node.rChild);
+
+    if (node.rChild) {
+      this.preOrderTraversal(node.rChild);
     }
   }
 
   postOrderTraversal(node = this.head) {
     if (!node) {
-        return;
+      return;
     }
 
     if (node.lChild !== null) {
-        this.preOrderTraversal(node.lChild);
+      this.preOrderTraversal(node.lChild);
     }
-    
-    if (node.rChild) { 
-        this.preOrderTraversal(node.rChild);
+
+    if (node.rChild) {
+      this.preOrderTraversal(node.rChild);
     }
     console.log(node.data);
   }

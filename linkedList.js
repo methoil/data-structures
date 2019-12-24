@@ -1,11 +1,18 @@
-class linkedList {
+class Node {
+  constructor(val, next = null) {
+      this.data = val;
+      this.next = next;
+  }
+}
+
+class LinkedList {
   constructor() {
     this.head = this.makeNode(0, null);
     this.tail = this.head;
   }
 
   makeNode(data, next) {
-    return { data, next };
+    return new Node(data, next);
   }
 
   appendNode(data) {
@@ -73,19 +80,16 @@ class linkedList {
    do {
       if (currIndex === index) {
         if (currNode === this.head) {
-          delete this.head; // any point in this???? probably not
           this.head = currNode.next;
           return 'head node deleted';
         } 
                 
         if (currNode === this.tail) {
-          delete this.tail; // no need for this...
           this.tail = prevNode;
           return 'tail delted';
         } 
         
         prevNode.next = currNode.next;
-        delete currNode;
         return 'node deleted';
       }
       
@@ -124,3 +128,6 @@ class linkedList {
     return;
   }
 }
+
+module.exports.Node = Node;
+module.exports.LinkedList = LinkedList;
