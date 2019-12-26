@@ -1,6 +1,14 @@
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.lChild = null;
+    this.rChild = null;
+  }
+}
+
 class binarySearchTree {
   constructor() {
-    this.head = this.generateNode(0);
+    this.head = null;
   }
 
   addNodes(dataArray) {
@@ -10,34 +18,30 @@ class binarySearchTree {
   }
 
   insert(data) {
-    let prevNode = null;
+    if (!this.head) {
+      this.head = new Node(data);
+      return this.head;
+    }
+
     let currNode = this.head;
     while (currNode !== null) {
       if (data < currNode.data) {
-        prevNode = currNode;
-        currNode = prevNode.lChild;
+        if (!currNode.lChild) {
+          currNode.lChild = new Node(data);
+          return currNode.lChild;
+        }
+        currNode = currNode.lChild;
       } else {
-        prevNode = currNode;
-        currNode = prevNode.rChild;
+        if (!currNode.rChild) {
+          currNode.rChild = new Node(data);
+          return currNode.rChild;
+        }
+        currNode = currNode.rChild;
       }
     }
-
-    if (data < prevNode.data) {
-      prevNode.lChild = this.generateNode(data);
-    } else {
-      prevNode.rChild = this.generateNode(data);
-    }
   }
 
-  generateNode(data) {
-    return {
-      data,
-      lChild: null,
-      rChild: null
-    };
-  }
-
-  retrieve(data) {
+  lookup(data) {
     let currNode = this.head;
     while (currNode != null) {
       if (currNode.data === data) {
@@ -52,6 +56,7 @@ class binarySearchTree {
     return null;
   }
 
+  // TODO - these traversals may not be right...
   inOrderTraversal(node = this.head) {
     if (!node) {
       return;

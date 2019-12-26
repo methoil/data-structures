@@ -2,7 +2,7 @@ const imp = require("./binarySearchTree");
 
 const tree = new imp.binarySearchTree();
 // tree.addNodes([4, 7, 3, 44, -3, -5, -33, 23, -1, 6, -76, 99]);
-tree.addNodes([-5, -33, -2, -3, 44, 1, 2, 3, 4, 5]);
+tree.addNodes([-5, -33, -2, -3, 44, 1, 2, 3, 4, 5, 99]);
 // console.log(tree);
 console.log("pre order:");
 tree.preOrderTraversal();
@@ -20,11 +20,11 @@ function traverse(node) {
   return tree;
 }
 
-// console.log(JSON.stringify(traverse(tree.head)));
-console.log(tree.retrieve(-33));
-console.log(tree.retrieve(1));
-console.log(tree.retrieve(44));
-console.log(tree.retrieve(5454)); // null
-console.log(tree.retrieve(-88)); // null
-console.log(tree.retrieve(666)); // null
-console.log(tree.retrieve(1));
+console.log(JSON.stringify(traverse(tree.head)));
+console.log(tree.lookup(-33));
+console.log(tree.lookup(1));
+console.log(tree.lookup(44));
+console.log(tree.lookup(5454)); // null
+console.log(tree.lookup(-88)); // null
+console.log(tree.lookup(666)); // null
+console.log(tree.lookup(99));
