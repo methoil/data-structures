@@ -5,11 +5,11 @@ class binarySearchTree {
 
   addNodes(dataArray) {
     for (let data of dataArray) {
-      this.addNode(data);
+      this.insert(data);
     }
   }
 
-  addNode(data) {
+  insert(data) {
     let prevNode = null;
     let currNode = this.head;
     while (currNode !== null) {
@@ -35,6 +35,21 @@ class binarySearchTree {
       lChild: null,
       rChild: null
     };
+  }
+
+  retrieve(data) {
+    let currNode = this.head;
+    while (currNode != null) {
+      if (currNode.data === data) {
+        return currNode;
+      } else if (data < currNode.data) {
+        currNode = currNode.lChild;
+      } else {
+        currNode = currNode.rChild;
+      }
+    }
+
+    return null;
   }
 
   inOrderTraversal(node = this.head) {
