@@ -41,6 +41,32 @@ class binarySearchTree {
     }
   }
 
+  remove(data) {
+    let prevNode = null;
+    let currNode = this.head;
+
+    if (this.head.data === data) {
+      if (this.head.lChild) {
+        // this.head.lChild.rChild
+      }
+    }
+
+    while (currNode != null) {
+      if (currNode.data === data) {
+        prevNode.lChild = currNode.lChild;
+        if (prevNode.lChild) {
+          prevNode.lChild.rChild = currNode.rChild;
+        }
+      } else if (data < currNode.data) {
+        prevNode = currNode;
+        currNode = currNode.lChild;
+      } else {
+        prevNode = currNode;
+        currNode = currNode.rChild;
+      }
+    }
+  }
+
   lookup(data) {
     let currNode = this.head;
     while (currNode != null) {
