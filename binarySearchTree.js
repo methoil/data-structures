@@ -45,14 +45,53 @@ class binarySearchTree {
     let prevNode = null;
     let currNode = this.head;
 
-    if (this.head.data === data) {
-      if (this.head.lChild) {
-        // this.head.lChild.rChild
-      }
-    }
-
     while (currNode != null) {
       if (currNode.data === data) {
+        // no right child
+        if (currNode.rChild == null) {
+          // removing head
+          if (prevNode == null) {
+            this.head = currNode.lChild;
+          }
+
+          if (prevNode.rChild.data === currNode.data) {
+            prevNode.rChild = currNode.lChild;
+          } else {
+            prevNode.lChild = currNode.lChild;
+          }
+        } // right child with no left
+        else if (currNode.rChild && !currNode.rChild.lChild) {
+          // removing head
+          if (prevNode == null) {
+            currNode.rChild.lChild = currNode.lChild;
+            this.head = currNode.rChild;
+          }
+
+          if (prevNode.rChild.data === currNode.data) {
+            prevNode.rChild = currNode.rChild;
+          } else {
+            prevNode.lChild = currNode.rChild;
+          }
+        } // right with a left - get the descendant
+        else {
+          let replacingNode = currNode.rChild;
+          while (replacingNode.lChild != null) {
+            replacingNode = replacingNode.lChild;
+          }
+          replacingNode.lChild = currNode.lChild;
+          replacingNode.rChild = currNode.rChild;
+
+          // removing head
+          if (prevNode == null) {
+            this.head = replacingNode;
+          }
+
+          if (prevNode.rChild.data === currNode.data) {
+            prevNode.rChild = replacingNode;
+          } else {
+            prevNode.lChild = replacingNode;
+          }
+        }
         prevNode.lChild = currNode.lChild;
         if (prevNode.lChild) {
           prevNode.lChild.rChild = currNode.rChild;
