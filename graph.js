@@ -7,11 +7,12 @@ class Graph {
   addVertex(node) {
     if (!this.adjacentList[node]) {
       this.adjacentList[node] = [];
+      this.numberOfNodes++;
     } else {
       console.warn(`node with value ${node} already exists`);
     }
   }
-  
+
   addEdge(node1, node2) {
     if (this.adjacentList[node1] && this.adjacentList[node2]) {
       // if constructed correctly one should imply the other as this graph is undirected
