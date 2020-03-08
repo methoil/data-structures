@@ -1,0 +1,27 @@
+//#1 - Sort 10 schools around your house by distance:
+- insertion sort - small data set and you intuitively know the general order so it's nearly sorted
+
+//#2 - eBay sorts listings by the current Bid amount:
+- quick sort - bids can change quickly, but you have a baseline from which to choose a pivot
+- radix/count sort - bids are in a certain range, and could multiply by 100 to get ints
+
+//#3 - Sport scores on ESPN
+- quick sort - many different kinds of sports, wide range 
+- radix sort/count sort - if the values are all fixed length integers for the same sport
+
+//#4 - Massive database (can't fit all into memory) needs to sort through past year's user data
+- heap sort - utilize the algo's low space complexity
+- merge sort - if you process in a distributed manner, then memory will not be the biggest concern
+                - thus will not sort in memory and speed is more of a concern
+
+//#5 - Almost sorted Udemy review data needs to update and add 2 new reviews
+- insertion sort - only 2 new entries, data is almost sorted. Generally not a massive # of reviews.
+
+//#6 - Temperature Records for the past 50 years in Canada
+- quick sort - general case sorting, data is fairly predictable
+
+//#7 - Large user name database needs to be sorted. Data is very random.
+- merge sort - data is random and numerous, take advantage of predictability, if memory is not limited on machine
+
+//#8 - You want to teach sorting for the first time
+- bubble sort, it is the easiest to implement
