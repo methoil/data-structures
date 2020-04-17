@@ -38,11 +38,38 @@ class Trie {
         return this._startsWithSearch(localRoot);
     }
     
-    _getNodeOfPrefix(word) {
+    remove(word) {
+        const nodePath = [];
+        let currNode = this._getNodeOfPrefix(word, nodePath);
+        if (!currNode) {
+          return 'nothing to remove';   
+        }
+        currNode.isWord = false;
+        
+        // Remove unused letters
+        while(nodePath.length) {
+           if (!currNode.children.length) {
+             const parent = nodePath.pop();
+             const removeIdx = parent.children.findIndex(child => child === currNode);
+             parent.children.splice(removeIdx, 1);
+             currNode = parent;
+           } else {
+             break; // stop deleting if the node is still used elsewhere
+           }
+        }
+        
+        return 'removed word from trie';
+    }
+    
+    // nodePath is optional parameter - can I make this a pure function and not duplicate code????
+    _getNodeOfPrefix(word, nodePath) {
         let currNode = this.root;
         for (let letter of word) {
            const match = currNode.children.find(child => child.letter === letter);
             if (match) {
+                if (Array.isArray(nodePath)) {
+                  nodePath.push(match);   
+                }
                 currNode = match;
             } else {
                 return null;
